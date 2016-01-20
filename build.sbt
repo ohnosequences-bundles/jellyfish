@@ -11,4 +11,7 @@ resolvers := Seq(
   "Era7 public maven snapshots" at s3("snapshots.era7.com").toHttps(s3region.value.toString)
 ) ++ resolvers.value
 
-libraryDependencies += "ohnosequences" %% "statika" % "2.0.0-M4"
+libraryDependencies ++= Seq(
+  "ohnosequences"         %% "statika"         % "2.0.0-M5",
+  "ohnosequences-bundles" %% "cdevel"          % "0.4.0"
+)
