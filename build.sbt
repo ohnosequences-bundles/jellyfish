@@ -4,6 +4,9 @@ name := "jellyfish"
 organization := "ohnosequences-bundles"
 description := "A bundle for jellyfish tool"
 
+// the org name differs on github:
+GithubRelease.repo := s"era7bio/${name.value}"
+
 publishBucketSuffix := "era7.com"
 
 resolvers := Seq(
