@@ -1,6 +1,6 @@
 package ohnosequencesBundles.statika
 
-import ohnosequences.statika._
+import ohnosequences.statika._, bundles._, instructions._, results._
 import scala.sys.process._
 import java.io.File
 
@@ -21,7 +21,7 @@ abstract class Jellyfish(val version: String) extends Bundle(cdevel) { jellyfish
     Success("hola", Process(
         Seq("./configure"),
         new File(s"${wd.getCanonicalPath}/${jellyfish.folder}")
-      )
+      ).!
     )
   )
 
@@ -29,19 +29,16 @@ abstract class Jellyfish(val version: String) extends Bundle(cdevel) { jellyfish
 
   lazy val makeInstall = cmd("make")("-C", jellyfish.folder, "install")
 
+  lazy val linkBinaries = cmd("ln")(
+    "-s",
+    new File(s"${jellyfish.folder}/${jellyfish.jellyfishBin}").getCanonicalPath,
+    s"/usr/bin/${jellyfish.jellyfishBin}"
+  )
+
   def instructions: AnyInstructions = getTarball      -&-
                                       extractTarball  -&-
                                       configure       -&-
                                       compile         -&-
-                                      makeInstall
-}
-
-
-case object jellyfish extends Bundle() {
-
-  def instructions: AnyInstructions = {
-    // do someting here
-    say(s"${bundleName} is installed")
-  }
-
+                                      makeInstall     -&-
+                                      linkBinaries
 }
