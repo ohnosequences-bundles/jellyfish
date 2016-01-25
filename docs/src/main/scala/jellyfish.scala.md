@@ -20,7 +20,7 @@ abstract class Jellyfish(val version: String) extends Bundle(cdevel) { jellyfish
 
   lazy val configure = new SimpleInstructions( wd =>
     // TODO proper error handling
-    Success("hola", Process(
+    Success("configuring Jellyfish build", Process(
         Seq("./configure"),
         new File(s"${wd.getCanonicalPath}/${jellyfish.folder}")
       ).!
@@ -33,7 +33,7 @@ abstract class Jellyfish(val version: String) extends Bundle(cdevel) { jellyfish
 
   lazy val linkBinaries = cmd("ln")(
     "-s",
-    new File(s"${jellyfish.folder}/${jellyfish.jellyfishBin}").getCanonicalPath,
+    new File(s"${jellyfish.folder}/bin/${jellyfish.jellyfishBin}").getCanonicalPath,
     s"/usr/bin/${jellyfish.jellyfishBin}"
   )
 

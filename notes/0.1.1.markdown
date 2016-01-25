@@ -1,0 +1,3 @@
+This is a bugfix release. Fixes
+
+- #2 the `jellyfish` binary was not being linked to `/usr/bin`; its path was wrong
