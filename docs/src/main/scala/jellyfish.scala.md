@@ -2,7 +2,7 @@
 ```scala
 package ohnosequencesBundles.statika
 
-import ohnosequences.statika._, bundles._, instructions._, results._
+import ohnosequences.statika._
 import scala.sys.process._
 import java.io.File
 
